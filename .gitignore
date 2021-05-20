@@ -3,3 +3,4 @@ bin
 pyvenv.cfg
 __pycache__/
 *.py[cod]
+tests
