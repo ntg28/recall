@@ -18,7 +18,7 @@ def main(fp: str) -> int:
         fdata = f.read()
 
     questions = recall.get_questions(fdata,
-        beg="Q:", mid="A:", end="\$")
+        beg="Q:", mid="A:", end="END")
 
     recall.recall(questions, prefix="YOUR ANSWER: ", inverted=False)
 

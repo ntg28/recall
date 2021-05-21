@@ -21,13 +21,12 @@ def get_questions(
 ) -> Questions: 
     """ TODO
     """
-    # FIX: `end` NEED to be a non-word char like: `\$` or `\%`
-    regex: str = f"{beg}([^$]*){mid}([^$]*){end}"
+    regex: str = f"{beg}(.+?)(?={mid}){mid}(.+?)(?={end})"
     question: str = ""
     answer: str = ""
     questions: Questions = []
 
-    for question, answer in re.findall(regex, data):
+    for question, answer in re.findall(regex, data, re.DOTALL):
         questions.append((question.strip(), answer.strip()))
 
     print(questions)
