@@ -27,9 +27,6 @@ def get_questions(data: str, conf: Dict[str, str]) -> Questions:
     for question, answer in re.findall(regex, data, re.DOTALL):
         questions.append((question.strip(), answer.strip()))
 
-    if not questions:
-        return questions
-
     return questions
 
 def recall(questions: Questions, conf: Dict[str, str], inversed: bool) -> int:
