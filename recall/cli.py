@@ -34,3 +34,8 @@ def main() -> int:
     recall.recall(questions, prefix=prefix, inverted=False)
 
     return 0
+
+def entry_point():
+    try: main()
+    except KeyboardInterrupt:
+        print("\nClosing... Goodbye (^^)/")

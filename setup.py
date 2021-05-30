@@ -5,7 +5,7 @@ desc: str = "Python scripts for Active Recall learning method"
 version: str = "0.1"
 entry_points: dict = {
     "console_scripts": [
-        "recall=recall.cli:main"
+        "recall=recall.cli:entry_point"
         ]
     }
 
