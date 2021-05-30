@@ -1,6 +1,7 @@
 import recall
+from recall import conf
 
-from os import path
+from os import (path, getenv)
 from sys import argv
 from typing import (Dict, List)
 
@@ -23,15 +24,19 @@ def main() -> int:
     elif (argv_err == 2):
         raise SystemExit(f"E: {argv[1]} not exists.")
 
+    path_conf: str = getenv("HOME") + "/.config/recall/recall.conf"
+    user_conf: Dict[str, str] = conf.conf_from(path_conf)
+
     fp: str = argv[1]
-    prefix: str = "Your Answer: "
-    question: recall.Questions
+    questions: recall.Questions
 
     with open(fp, "r") as f:
-        questions = recall.get_questions(f.read(),
-            beg="Q:", mid="A:", end="END")
+        questions = recall.get_questions(f.read(), user_conf)
 
-    recall.recall(questions, prefix=prefix, inverted=False)
+    if not questions:
+        raise SystemExit("E: not found")
+
+    recall.recall(questions, user_conf, False)
 
     return 0
 
